@@ -1,0 +1,270 @@
+---- AspectJ Properties ---
+AspectJ Compiler 1.6.12 built on Tuesday Oct 18, 2011 at 17:52:06 GMT
+---- Dump Properties ---
+Dump file: ajcore.20160810.141618.090.txt
+Dump reason: org.aspectj.apache.bcel.classfile.ClassFormatException
+Dump on exception: true
+Dump at exit condition: abort
+---- Exception Information ---
+org.aspectj.apache.bcel.classfile.ClassFormatException: File: 'java/lang/CharSequence.class': Invalid byte tag in constant pool: 15
+	at org.aspectj.apache.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:192)
+	at org.aspectj.apache.bcel.classfile.ClassParser.parse(ClassParser.java:131)
+	at org.aspectj.weaver.bcel.BcelWorld.lookupJavaClass(BcelWorld.java:424)
+	at org.aspectj.weaver.bcel.BcelWorld.resolveDelegate(BcelWorld.java:376)
+	at org.aspectj.weaver.World.resolveToReferenceType(World.java:485)
+	at org.aspectj.weaver.World.resolve(World.java:326)
+	at org.aspectj.weaver.World.resolve(World.java:236)
+	at org.aspectj.weaver.bcel.BcelGenericSignatureToTypeXConverter.classTypeSignature2TypeX(BcelGenericSignatureToTypeXConverter.java:97)
+	at org.aspectj.weaver.bcel.BcelGenericSignatureToTypeXConverter.classTypeSignature2TypeX(BcelGenericSignatureToTypeXConverter.java:41)
+	at org.aspectj.weaver.bcel.BcelObjectType.ensureGenericSignatureUnpacked(BcelObjectType.java:810)
+	at org.aspectj.weaver.bcel.BcelObjectType.getDeclaredInterfaces(BcelObjectType.java:257)
+	at org.aspectj.weaver.ReferenceType.getDeclaredInterfaces(ReferenceType.java:626)
+	at org.aspectj.weaver.ResolvedType.getDirectSupertypes(ResolvedType.java:82)
+	at org.aspectj.weaver.ResolvedType.collectInterTypeMungers(ResolvedType.java:1374)
+	at org.aspectj.weaver.ResolvedType.getInterTypeMungersIncludingSupers(ResolvedType.java:1355)
+	at org.aspectj.weaver.ResolvedType.checkInterTypeMungers(ResolvedType.java:1426)
+	at org.aspectj.ajdt.internal.compiler.lookup.AjLookupEnvironment.weaveInterTypeDeclarations(AjLookupEnvironment.java:809)
+	at org.aspectj.ajdt.internal.compiler.lookup.AjLookupEnvironment.weaveInterTypeDeclarations(AjLookupEnvironment.java:652)
+	at org.aspectj.ajdt.internal.compiler.lookup.AjLookupEnvironment.doPendingWeaves(AjLookupEnvironment.java:427)
+	at org.aspectj.ajdt.internal.compiler.lookup.AjLookupEnvironment.completeTypeBindings(AjLookupEnvironment.java:213)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.internalBeginToCompile(Compiler.java:616)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.beginToCompile(Compiler.java:357)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:371)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1027)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:271)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:184)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:371)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:248)
+	at org.aspectj.tools.ant.taskdefs.AjcTask.executeInSameVM(AjcTask.java:1240)
+	at org.aspectj.tools.ant.taskdefs.AjcTask.execute(AjcTask.java:1050)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:293)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:435)
+	at org.apache.tools.ant.Target.performTasks(Target.java:456)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1405)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1376)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1260)
+	at org.apache.tools.ant.Main.runBuild(Main.java:854)
+	at org.apache.tools.ant.Main.startAnt(Main.java:236)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:285)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:112)
+---- System Properties ---
+java.runtime.name=Java(TM) SE Runtime Environment
+sun.boot.library.path=C:\Program Files (x86)\Java\jre1.8.0_92\bin
+java.vm.version=25.92-b14
+ant.library.dir=C:\Ant\lib
+java.vm.vendor=Oracle Corporation
+java.vendor.url=http://java.oracle.com/
+path.separator=;
+java.vm.name=Java HotSpot(TM) Client VM
+file.encoding.pkg=sun.io
+user.country=GB
+user.script=
+sun.java.launcher=SUN_STANDARD
+sun.os.patch.level=
+java.vm.specification.name=Java Virtual Machine Specification
+user.dir=C:\Users\Acer\workspace\BankOfDLPDS
+java.runtime.version=1.8.0_92-b14
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+java.endorsed.dirs=C:\Program Files (x86)\Java\jre1.8.0_92\lib\endorsed
+os.arch=x86
+java.io.tmpdir=C:\Users\Acer\AppData\Local\Temp\
+line.separator=
+
+java.vm.specification.vendor=Oracle Corporation
+user.variant=
+os.name=Windows 10
+ant.home=C:\Ant
+sun.jnu.encoding=Cp1252
+java.library.path=C:\Program Files (x86)\Java\jre1.8.0_92\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Java\jre1.8.0_92\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk1.8.0_73\bin;D:\sonarqube-5.4\bin\windows-x86-64;D:\sonar-scanner-2.5.1\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Skype\Phone\;C:\Ant\bin;.
+java.specification.name=Java Platform API Specification
+java.class.version=52.0
+sun.management.compiler=HotSpot Client Compiler
+os.version=10.0
+user.home=C:\Users\Acer
+user.timezone=Asia/Colombo
+java.awt.printerjob=sun.awt.windows.WPrinterJob
+file.encoding=Cp1252
+java.specification.version=1.8
+java.class.path=C:\Ant\lib\ant-launcher.jar;C:\Ant\lib\ant-antlr.jar;C:\Ant\lib\ant-apache-bcel.jar;C:\Ant\lib\ant-apache-bsf.jar;C:\Ant\lib\ant-apache-log4j.jar;C:\Ant\lib\ant-apache-oro.jar;C:\Ant\lib\ant-apache-regexp.jar;C:\Ant\lib\ant-apache-resolver.jar;C:\Ant\lib\ant-apache-xalan2.jar;C:\Ant\lib\ant-commons-logging.jar;C:\Ant\lib\ant-commons-net.jar;C:\Ant\lib\ant-jai.jar;C:\Ant\lib\ant-javamail.jar;C:\Ant\lib\ant-jdepend.jar;C:\Ant\lib\ant-jmf.jar;C:\Ant\lib\ant-jsch.jar;C:\Ant\lib\ant-junit.jar;C:\Ant\lib\ant-junit4.jar;C:\Ant\lib\ant-launcher.jar;C:\Ant\lib\ant-netrexx.jar;C:\Ant\lib\ant-swing.jar;C:\Ant\lib\ant-testutil.jar;C:\Ant\lib\ant.jar
+user.name=Acer
+java.vm.specification.version=1.8
+sun.java.command=org.apache.tools.ant.launch.Launcher
+java.home=C:\Program Files (x86)\Java\jre1.8.0_92
+sun.arch.data.model=32
+user.language=en
+java.specification.vendor=Oracle Corporation
+awt.toolkit=sun.awt.windows.WToolkit
+java.vm.info=mixed mode
+java.version=1.8.0_92
+java.ext.dirs=C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext;C:\Windows\Sun\Java\lib\ext
+sun.boot.class.path=C:\Program Files (x86)\Java\jre1.8.0_92\lib\resources.jar;C:\Program Files (x86)\Java\jre1.8.0_92\lib\rt.jar;C:\Program Files (x86)\Java\jre1.8.0_92\lib\sunrsasign.jar;C:\Program Files (x86)\Java\jre1.8.0_92\lib\jsse.jar;C:\Program Files (x86)\Java\jre1.8.0_92\lib\jce.jar;C:\Program Files (x86)\Java\jre1.8.0_92\lib\charsets.jar;C:\Program Files (x86)\Java\jre1.8.0_92\lib\jfr.jar;C:\Program Files (x86)\Java\jre1.8.0_92\classes
+java.vendor=Oracle Corporation
+sun.stderr.encoding=cp850
+file.separator=\
+java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+sun.io.unicode.encoding=UnicodeLittle
+sun.cpu.endian=little
+sun.stdout.encoding=cp850
+sun.desktop=windows
+sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86
+---- Command Line ---
+-d
+C:\Users\Acer\workspace\BankOfDLPDS\build\class
+-source
+1.5
+-classpath
+C:\Users\Acer\workspace\BankOfDLPDS\lib\aspectjrt.jar
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\aspect\Logger.aj
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\bank\Account.java
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\bank\Bank.java
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\bank\Transaction.java
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\bank\User.java
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\bank\temp.java
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\resources\DBConnection.java
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\resources\test.java
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\ui\LoginController.java
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\ui\Main.java
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\ui\MainController.java
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\ui\MainController2.java
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\ui\RegisterController.java
+---- Full Classpath ---
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\resources.jar(3488879 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\rt.jar(54402688 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\sunrsasign.jar(missing)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\jsse.jar(571126 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\jce.jar(114950 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\charsets.jar(3036922 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\jfr.jar(560552 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\classes(missing)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext\access-bridge-32.jar(187736 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext\cldrdata.jar(3860522 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext\dnsns.jar(8286 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext\jaccess.jar(44516 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext\jfxrt.jar(18192137 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext\localedata.jar(2204371 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext\nashorn.jar(2018859 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext\sunec.jar(39771 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext\sunjce_provider.jar(278718 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext\sunmscapi.jar(32750 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext\sunpkcs11.jar(250826 bytes)
+C:\Program Files (x86)\Java\jre1.8.0_92\lib\ext\zipfs.jar(68923 bytes)
+C:\Users\Acer\workspace\BankOfDLPDS\lib\aspectjrt.jar(116219 bytes)
+---- Compiler Messages ---
+info directory classpath entry does not exist: C:\Program Files (x86)\Java\jre1.8.0_92\lib\sunrsasign.jar
+info zipfile classpath entry does not exist: C:\Program Files (x86)\Java\jre1.8.0_92\classes
+info Pipelining compilation
+error at (no source information available)
+C:\Users\Acer\workspace\BankOfDLPDS\src\com\dlpds\ui\RegisterController.java:0::0 Internal compiler error
+org.aspectj.apache.bcel.classfile.ClassFormatException: File: 'java/lang/CharSequence.class': Invalid byte tag in constant pool: 15
+	at org.aspectj.apache.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:192)
+	at org.aspectj.apache.bcel.classfile.ClassParser.parse(ClassParser.java:131)
+	at org.aspectj.weaver.bcel.BcelWorld.lookupJavaClass(BcelWorld.java:424)
+	at org.aspectj.weaver.bcel.BcelWorld.resolveDelegate(BcelWorld.java:376)
+	at org.aspectj.weaver.World.resolveToReferenceType(World.java:485)
+	at org.aspectj.weaver.World.resolve(World.java:326)
+	at org.aspectj.weaver.World.resolve(World.java:236)
+	at org.aspectj.weaver.bcel.BcelGenericSignatureToTypeXConverter.classTypeSignature2TypeX(BcelGenericSignatureToTypeXConverter.java:97)
+	at org.aspectj.weaver.bcel.BcelGenericSignatureToTypeXConverter.classTypeSignature2TypeX(BcelGenericSignatureToTypeXConverter.java:41)
+	at org.aspectj.weaver.bcel.BcelObjectType.ensureGenericSignatureUnpacked(BcelObjectType.java:810)
+	at org.aspectj.weaver.bcel.BcelObjectType.getDeclaredInterfaces(BcelObjectType.java:257)
+	at org.aspectj.weaver.ReferenceType.getDeclaredInterfaces(ReferenceType.java:626)
+	at org.aspectj.weaver.ResolvedType.getDirectSupertypes(ResolvedType.java:82)
+	at org.aspectj.weaver.ResolvedType.collectInterTypeMungers(ResolvedType.java:1374)
+	at org.aspectj.weaver.ResolvedType.getInterTypeMungersIncludingSupers(ResolvedType.java:1355)
+	at org.aspectj.weaver.ResolvedType.checkInterTypeMungers(ResolvedType.java:1426)
+	at org.aspectj.ajdt.internal.compiler.lookup.AjLookupEnvironment.weaveInterTypeDeclarations(AjLookupEnvironment.java:809)
+	at org.aspectj.ajdt.internal.compiler.lookup.AjLookupEnvironment.weaveInterTypeDeclarations(AjLookupEnvironment.java:652)
+	at org.aspectj.ajdt.internal.compiler.lookup.AjLookupEnvironment.doPendingWeaves(AjLookupEnvironment.java:427)
+	at org.aspectj.ajdt.internal.compiler.lookup.AjLookupEnvironment.completeTypeBindings(AjLookupEnvironment.java:213)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.internalBeginToCompile(Compiler.java:616)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.beginToCompile(Compiler.java:357)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:371)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1027)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:271)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:184)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:371)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:248)
+	at org.aspectj.tools.ant.taskdefs.AjcTask.executeInSameVM(AjcTask.java:1240)
+	at org.aspectj.tools.ant.taskdefs.AjcTask.execute(AjcTask.java:1050)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:293)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:435)
+	at org.apache.tools.ant.Target.performTasks(Target.java:456)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1405)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1376)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1260)
+	at org.apache.tools.ant.Main.runBuild(Main.java:854)
+	at org.apache.tools.ant.Main.startAnt(Main.java:236)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:285)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:112)
+
+abort ABORT -- (ClassFormatException) File: 'java/lang/CharSequence.class': Invalid byte tag in constant pool: 15
+File: 'java/lang/CharSequence.class': Invalid byte tag in constant pool: 15
+org.aspectj.apache.bcel.classfile.ClassFormatException: File: 'java/lang/CharSequence.class': Invalid byte tag in constant pool: 15
+	at org.aspectj.apache.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:192)
+	at org.aspectj.apache.bcel.classfile.ClassParser.parse(ClassParser.java:131)
+	at org.aspectj.weaver.bcel.BcelWorld.lookupJavaClass(BcelWorld.java:424)
+	at org.aspectj.weaver.bcel.BcelWorld.resolveDelegate(BcelWorld.java:376)
+	at org.aspectj.weaver.World.resolveToReferenceType(World.java:485)
+	at org.aspectj.weaver.World.resolve(World.java:326)
+	at org.aspectj.weaver.World.resolve(World.java:236)
+	at org.aspectj.weaver.bcel.BcelGenericSignatureToTypeXConverter.classTypeSignature2TypeX(BcelGenericSignatureToTypeXConverter.java:97)
+	at org.aspectj.weaver.bcel.BcelGenericSignatureToTypeXConverter.classTypeSignature2TypeX(BcelGenericSignatureToTypeXConverter.java:41)
+	at org.aspectj.weaver.bcel.BcelObjectType.ensureGenericSignatureUnpacked(BcelObjectType.java:810)
+	at org.aspectj.weaver.bcel.BcelObjectType.getDeclaredInterfaces(BcelObjectType.java:257)
+	at org.aspectj.weaver.ReferenceType.getDeclaredInterfaces(ReferenceType.java:626)
+	at org.aspectj.weaver.ResolvedType.getDirectSupertypes(ResolvedType.java:82)
+	at org.aspectj.weaver.ResolvedType.collectInterTypeMungers(ResolvedType.java:1374)
+	at org.aspectj.weaver.ResolvedType.getInterTypeMungersIncludingSupers(ResolvedType.java:1355)
+	at org.aspectj.weaver.ResolvedType.checkInterTypeMungers(ResolvedType.java:1426)
+	at org.aspectj.ajdt.internal.compiler.lookup.AjLookupEnvironment.weaveInterTypeDeclarations(AjLookupEnvironment.java:809)
+	at org.aspectj.ajdt.internal.compiler.lookup.AjLookupEnvironment.weaveInterTypeDeclarations(AjLookupEnvironment.java:652)
+	at org.aspectj.ajdt.internal.compiler.lookup.AjLookupEnvironment.doPendingWeaves(AjLookupEnvironment.java:427)
+	at org.aspectj.ajdt.internal.compiler.lookup.AjLookupEnvironment.completeTypeBindings(AjLookupEnvironment.java:213)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.internalBeginToCompile(Compiler.java:616)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.beginToCompile(Compiler.java:357)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:371)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1027)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:271)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:184)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:371)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:248)
+	at org.aspectj.tools.ant.taskdefs.AjcTask.executeInSameVM(AjcTask.java:1240)
+	at org.aspectj.tools.ant.taskdefs.AjcTask.execute(AjcTask.java:1050)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:293)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:435)
+	at org.apache.tools.ant.Target.performTasks(Target.java:456)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1405)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1376)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1260)
+	at org.apache.tools.ant.Main.runBuild(Main.java:854)
+	at org.apache.tools.ant.Main.startAnt(Main.java:236)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:285)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:112)
+
