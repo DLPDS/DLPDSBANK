@@ -3,6 +3,7 @@ package com.dlpds.ui;
 import java.io.IOException;
 
 import com.dlpds.bank.User;
+import com.dlpds.resources.Operations;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -23,19 +26,27 @@ public class RegisterController {
 	@FXML
 	private VBox regfxml;
 	@FXML
-	private TextField regFName;
+	private TextField firstName;
 	@FXML
-	private TextField regSName;
+	private TextField secondName;
 	@FXML
-	private TextField regNIC;
+	private TextField nic;
 	@FXML
-	private TextField regMail;
+	private ChoiceBox gender;
 	@FXML
-	private TextField regUname;
+	private DatePicker dob;
 	@FXML
-	private TextField regPwd;
+	private TextField address;
 	@FXML
-	private TextField regCPwd;
+	private TextField phoneNum;
+	@FXML
+	private TextField mail;
+	@FXML
+	private TextField userName;
+	@FXML
+	private TextField pwd;
+	@FXML
+	private TextField pwdCon;
 	@FXML
 	private Button signUpButton;
 
@@ -49,7 +60,6 @@ public class RegisterController {
 	}
 
 	public void changeWindow(String fxmlFile, Button button, String title) {
-		// Decalaration of Variables
 		final Stage stage, stage1;
 		FXMLLoader pane;
 		Parent taskselectwindow;
@@ -76,11 +86,20 @@ public class RegisterController {
 
 	@FXML
 	public void signupButtonAction(ActionEvent event) {
-		User newUser = new User();
-		if (newUser.registerUser(regFName.getText(), regNIC.getText(), regMail.getText(), regUname.getText(),
-				regPwd.getText())) {
-			changeWindow("Login.fxml",signUpButton,"Login");
+		if(pwd.getText().equals(pwdCon.getText())){
+			User newUser = new User(firstName.getText(), secondName.getText(), nic.getText(), gender.getValue().toString(),
+					dob.getValue().toString(), address.getText(), phoneNum.getText(), mail.getText(), userName.getText(),
+					pwd.getText());
+			if(newUser.registerUser()){
+				changeWindow("Login.fxml",signUpButton,"Login");
+			}else{
+				displayAleart("WARNING", "Internal Error");
+			}
 		}
+		else{
+			displayAleart("WARNING", "Password Mismatch");
+		}
+		
 	}
 
 	private void displayAleart(String headerText, String content) {

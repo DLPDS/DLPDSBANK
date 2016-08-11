@@ -103,10 +103,10 @@ public class MainController2 {
 	
 	@FXML
 	public void signupButtonAction(ActionEvent event){
-		User newUser = new User();
+		/*User newUser = new User();
 		if(newUser.registerUser(regFName.getText(),regNIC.getText(),regMail.getText(),regUname.getText(),regPwd.getText())){
 			regfxml.getChildren().clear();
-		}		
+		}	*/	
 	}
 	
 	@FXML

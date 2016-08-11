@@ -2,10 +2,17 @@ package com.dlpds.bank;
 
 import java.util.ArrayList;
 
+import com.dlpds.resources.Operations;
+
 public class User {
 	private String NIC;
 	private String name;
+	private String secondName;
+	private String gender;
+	private String dob;
+	private String phoneNumber;
 	private String address;
+	private String email;
 	private String uname;
 	private String password;
 	private ArrayList<Account> accounts;
@@ -18,17 +25,41 @@ public class User {
 		
 	}
 	
-	public boolean registerUser(String name, String NIC, String address, String uname, String password){
+	public User(String name,String secondName, String NIC, String gender,String dob,String address,String phoneNub,String email, String uname, String password) {
 		try{
 			this.setName(name);
+			this.setSecondName(secondName);
 			this.setAddress(address);
 			this.setNIC(NIC);
+			this.setGender(gender);
+			this.setDob(dob);
 			this.setUname(uname);
+			this.setEmail(email);
+			this.setPhoneNumber(phoneNub);
 			this.setPassword(password);
+			this.setRegister(true);
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public boolean registerUser(){
+		try{
 			setAccounts(new ArrayList<Account>());
 			bankOfDLPDS.addUser(this);
-			this.setRegister(true);
-			return true;
+			Operations operations=new Operations();
+			if(operations.registerUser(this)){
+				return true;
+			}
+			else{
+				return false;
+			}
+			
+			/*this.setRegister(true);
+			return true;*/
 		}catch(Exception e){
 			return false;
 		}
@@ -121,6 +152,46 @@ public class User {
 
 	public void setLogin(boolean isLogin) {
 		this.isLogin = isLogin;
+	}
+
+	public String getSecondName() {
+		return secondName;
+	}
+
+	public void setSecondName(String secondName) {
+		this.secondName = secondName;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getDob() {
+		return dob;
+	}
+
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

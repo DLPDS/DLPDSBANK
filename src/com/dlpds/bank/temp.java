@@ -41,12 +41,12 @@ public class temp {
 		        	String username = scanner.next();
 		        	System.out.println("Please enter your password");
 		        	String pwd = scanner.next();
-		        	if(newUser.registerUser(name,nic,mail,username,pwd)){
+		        	/*if(newUser.registerUser(name,nic,mail,username,pwd)){
 		        		continue;
 		        	}else{
 		        		System.out.println("Error Occured");
 		        	}
-		        	
+		        	*/
 		        	//newUser = new User();
 		        	//newUser.registerUser("Amali", "912810046v", "tcdlpds", "amali", "123");
 		        }

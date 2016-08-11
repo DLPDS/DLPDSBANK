@@ -1,7 +1,5 @@
 package com.dlpds.ui;
 
-import com.dlpds.bank.User;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,17 +19,9 @@ public class Main extends Application {
     }
     
     public static void main(String[] args) {
-    	createAccounts();
         Application.launch(args);
         
     }
     
-    public static void createAccounts(){
-    	User newUser = new User();
-    	newUser.registerUser("Amali","Osadi","a@gmail.com", "angomali","ango");
-		newUser=newUser.login("angomali", "ango");
-		System.out.println(newUser.createAccount(1000, "Rs"));
-		
-		}
     
 }
