@@ -3,6 +3,7 @@ package com.dlpds.ui;
 import java.io.IOException;
 
 import com.dlpds.bank.User;
+import com.dlpds.resources.Operations;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,13 +76,22 @@ public class LoginController {
 	
 	@FXML
 	public void loginButtonAction(ActionEvent event){
-		User newUser = new User();
+		/*User newUser = new User();
 		currentUser=newUser.login(uname.getText(), pwd.getText());
     	if(currentUser!=null){ //correct here. make a class called signin
 			changeWindow("MainUI.fxml",login,"Bank of DLPDS");
     	}else{
     		displayAleart("Login Error","Please Provide Valid Credentials");
-    	}
+    	}*/
+		Operations loginOpp=new Operations();
+		System.out.println(uname.getText());
+		System.out.println(pwd.getText());
+		System.out.println(loginOpp.validLogin(uname.getText(), pwd.getText()));
+		if(loginOpp.validLogin(uname.getText().trim(), pwd.getText().trim())){
+			changeWindow("MainUI.fxml",login,"Bank of DLPDS");
+		}else{
+			displayAleart("Login Error","Please Provide Valid Credentials");
+		}
 	}
 	
 	@FXML

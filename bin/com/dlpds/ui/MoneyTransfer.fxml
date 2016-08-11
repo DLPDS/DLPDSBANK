@@ -16,7 +16,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin></Label>
             <Region HBox.hgrow="ALWAYS" />
-				<TextField>
+				<TextField fx:id="transAccNum">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin></TextField>
@@ -30,7 +30,7 @@
                </HBox.margin>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
-            <TextField>
+            <TextField fx:id="receAccNum">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin>
@@ -45,14 +45,14 @@
                </HBox.margin>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
-            <TextField>
+            <TextField fx:id="transAmount">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin>
             </TextField>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="Transfer">
+      <Button fx:id="transfer" mnemonicParsing="false" text="Transfer">
          <VBox.margin>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </VBox.margin>
