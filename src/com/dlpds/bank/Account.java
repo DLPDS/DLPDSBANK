@@ -7,32 +7,23 @@ import java.math.BigInteger;
 public class Account {
 	private String accNumber;
 	private double balance;
-	//private User owner;
 	private String currency;
-	private User accountOwner;
 	private SecureRandom random = new SecureRandom();
-			
-	/*public Account(double balance, User owner) {
-		this.balance = balance;
-		this.owner = owner;
-	}
-						
-	public Account(User owner) {
-		this.owner = owner;
-		this.balance = 0;
-	}*/
 	
-	public Account(){
-		setAccNumber();
+	public Account(double balance, String currency){
+		this.setCurrency(currency);
+		this.setBalance(balance);	
+	}
+	
+	public Account(double balance, String currency,String accNum){
+		this.setCurrency(currency);
+		this.setBalance(balance);
+		this.setAccNumber(accNum);
 	}
 	
     private String createAccountNumber() {
     	return new BigInteger(50, random).toString(32);
     }
-						
-/*	public User getOwner() {
-		return this.owner;
-	}*/
 
 	public void setBalance(double newbalance) {
 		this.balance = newbalance;
@@ -54,18 +45,12 @@ public class Account {
 		return accNumber;
 	}
 
-	private void setAccNumber() {
+	public void setAccNumber() {
 		this.accNumber = createAccountNumber();
 	}
-
-	public User getAccountOwner() {
-		return accountOwner;
-	}
-
-	public void setAccountOwner(User accountOwner) {
-		this.accountOwner = accountOwner;
-	}
 	
-
+	public void setAccNumber(String accNum) {
+		this.accNumber = accNum;
+	}
 }
 

@@ -50,8 +50,9 @@ public class User {
 		try{
 			setAccounts(new ArrayList<Account>());
 			bankOfDLPDS.addUser(this);
+			
 			Operations operations=new Operations();
-			if(operations.registerUser(this)){
+			if(operations.registerUser(this,createAccount(1000.00, "Rs"))){
 				return true;
 			}
 			else{
@@ -75,14 +76,12 @@ public class User {
 		return null;
 	}
 	
-	public String createAccount(double balance, String currency){
-		Account myAccount = new Account();
-		myAccount.setAccountOwner(this);
-		myAccount.setCurrency(currency);
-		myAccount.setBalance(balance);
+	public Account createAccount(double balance, String currency){
+		Account myAccount = new Account(balance,currency);
+		myAccount.setAccNumber();
 		bankOfDLPDS.addAccount(myAccount);
 		accounts.add(myAccount);
-		return myAccount.getAccNumber();
+		return myAccount;
 		
 	}
 	

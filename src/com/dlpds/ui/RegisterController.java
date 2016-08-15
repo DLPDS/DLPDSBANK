@@ -3,7 +3,6 @@ package com.dlpds.ui;
 import java.io.IOException;
 
 import com.dlpds.bank.User;
-import com.dlpds.resources.Operations;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -20,15 +20,11 @@
    <top>
       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-            <Button fx:id="createAcc" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#createAccButtonAction" text="Create Account">
+            <Button fx:id="accountInq" layoutX="66.0" layoutY="13.0" mnemonicParsing="false" text="Account Inquiries">
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding></Button>
           <Button fx:id="transferMoney" mnemonicParsing="false" onAction="#transferMoneyButtonAction" text="Transfer Money">
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding></Button>
-            <Button fx:id="accountInq" layoutX="66.0" layoutY="13.0" mnemonicParsing="false" text="Account Inquiries">
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding></Button>

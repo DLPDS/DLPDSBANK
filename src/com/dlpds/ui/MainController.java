@@ -31,8 +31,6 @@ public class MainController {
 	@FXML
 	private Pane rightPane;
 	@FXML
-	private Button createAcc;
-	@FXML
 	private Button transferMoney;
 	@FXML
 	private Button accountInq;
@@ -44,8 +42,6 @@ public class MainController {
 	private Button contactBank;
 	@FXML
 	private Button logout;
-	@FXML
-	private Button create;
 	@FXML
 	private TextField initAmount;
 	@FXML
@@ -123,21 +119,6 @@ public class MainController {
 		}
 		
 		
-	}
-	
-	public void createAccButtonAction(ActionEvent event){
-		if(currentUser!=null && currentUser.isLogin()){
-			changeView("AccountCreation.fxml", content);
-		}
-	}
-	
-	public void createButtonAction(ActionEvent event){
-		if(currentUser!=null && currentUser.isLogin()){
-			String accNumber;
-			accNumber=currentUser.createAccount(Double.parseDouble(initAmount.getText()), currency.getAccessibleText());
-			displaySuccessAleart("Account Created", accNumber);
-			System.out.println("Successfully Account Created");
-		}
 	}
 	
 	public void updateButtonAction(ActionEvent event){
