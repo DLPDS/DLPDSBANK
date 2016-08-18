@@ -53,6 +53,7 @@ public class Operations {
 				dbpwd = myRs.getString("password");
 			}
 			if (pwd.equals(dbpwd)) {
+				initializeApp(dbpwd);
 				return true;
 			} else {
 				return false;
@@ -61,6 +62,59 @@ public class Operations {
 			return false;
 
 		}
+	}
+
+	private void initializeApp(String pwd) {
+		// TODO Auto-generated method stub
+		try {
+			String query = "SELECT first_name,last_name,nid,sex,birthday,address,phone_no,email,username FROM internet_bank.customer";
+			Statement myStam = getStatement();
+			ResultSet myRs = executeQuery(myStam, query);
+			String firstName=null;
+			String secondName=null;
+			String nid=null;
+			String gender=null;
+			String dob=null;
+			String address=null;
+			String phoneNumber=null;
+			String email=null;
+			String uname=null;
+			
+			String accNumber=null;
+			double balance=0.0;
+			int currencyid=0;
+			
+			while (myRs.next()) {	
+				firstName=myRs.getString("first_name");
+				secondName=myRs.getString("last_name");
+				nid=myRs.getString("nid");
+				gender=myRs.getString("sex");
+				dob=myRs.getString("birthday");
+				address=myRs.getString("address");
+				phoneNumber=myRs.getString("phone_no");
+				email=myRs.getString("email");
+				uname=myRs.getString("username");
+			}
+			User usr=new User(firstName,secondName,nid,gender,dob,address,phoneNumber,email,uname);
+			usr.setLogin(true);
+			System.out.println(usr.isLogin()+" New user logged");
+			
+			String query1 = "SELECT account_num,balance,Currency_id FROM internet_bank.account where Customer_username='"+uname+"'";
+			Statement myStam1 = getStatement();
+			ResultSet myRs1 = executeQuery(myStam1, query1);
+			while (myRs1.next()) {	
+				accNumber=myRs1.getString("account_num");
+				balance=Double.parseDouble(myRs1.getString("balance"));
+				currencyid=Integer.parseInt(myRs1.getString("Currency_id"));
+			}
+			System.out.println(accNumber);
+			System.out.println(balance);
+			System.out.println(currencyid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public boolean registerUser(User user, Account acc) {

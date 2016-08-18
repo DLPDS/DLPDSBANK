@@ -85,20 +85,22 @@ public class RegisterController {
 
 	@FXML
 	public void signupButtonAction(ActionEvent event) {
-		if(pwd.getText().equals(pwdCon.getText())){
-			User newUser = new User(firstName.getText(), secondName.getText(), nic.getText(), gender.getValue().toString(),
-					dob.getValue().toString(), address.getText(), phoneNum.getText(), mail.getText(), userName.getText(),
-					pwd.getText());
-			if(newUser.registerUser()){
-				changeWindow("Login.fxml",signUpButton,"Login");
-			}else{
+		if (pwd.getText().equals(pwdCon.getText())) {
+			User newUser = new User(firstName.getText(), secondName.getText(), nic.getText(),
+					gender.getValue().toString(), dob.getValue().toString(), address.getText(), phoneNum.getText(),
+					mail.getText(), userName.getText());
+
+			newUser.setPassword(pwd.getText());
+			newUser.setRegister(true);
+			if (newUser.registerUser()) {
+				changeWindow("Login.fxml", signUpButton, "Login");
+			} else {
 				displayAleart("WARNING", "Internal Error");
 			}
-		}
-		else{
+		} else {
 			displayAleart("WARNING", "Password Mismatch");
 		}
-		
+
 	}
 
 	private void displayAleart(String headerText, String content) {

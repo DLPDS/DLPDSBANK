@@ -19,13 +19,12 @@ public class User {
 	private boolean isRegister = false;
 	private boolean isLogin = false;
 	public Bank bankOfDLPDS=Bank.getInstance();
-	
 					
 	public User() {
 		
 	}
 	
-	public User(String name,String secondName, String NIC, String gender,String dob,String address,String phoneNub,String email, String uname, String password) {
+	public User(String name,String secondName, String NIC, String gender,String dob,String address,String phoneNub,String email, String uname) {
 		try{
 			this.setName(name);
 			this.setSecondName(secondName);
@@ -35,11 +34,7 @@ public class User {
 			this.setDob(dob);
 			this.setUname(uname);
 			this.setEmail(email);
-			this.setPhoneNumber(phoneNub);
-			this.setPassword(password);
-			this.setRegister(true);
-			
-			
+			this.setPhoneNumber(phoneNub);			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
