@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.collections.*?>
+
+<VBox prefHeight="241.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlpds.ui.MainController">
+	<children>
+      <TableView prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="112.0" text="User" />
+          <TableColumn prefWidth="108.0" text="Acc Number" />
+            <TableColumn prefWidth="128.0" text="Balance" />
+            <TableColumn minWidth="1.0" prefWidth="113.0" text="Type" />
+            <TableColumn prefWidth="84.0" text="Date" />
+        </columns>
+      </TableView>
+      <HBox>
+         <children>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="transfer" mnemonicParsing="false" text="Ok">
+               <HBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+	</children>
+</VBox>

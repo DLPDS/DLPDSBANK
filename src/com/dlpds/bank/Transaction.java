@@ -3,10 +3,11 @@ package com.dlpds.bank;
 import java.util.Date;
 
 public class Transaction {
-	private String transactionId;
 	private Account fromAcc;
 	private Account toAcc;
 	private Date dateTime;
+	private String username;
+	private double amount;
 	
 	public Date getDateTime() {
 		return dateTime;
@@ -26,11 +27,17 @@ public class Transaction {
 	public void setFromAcc(Account fromAcc) {
 		this.fromAcc = fromAcc;
 	}
-	public String getTransactionId() {
-		return transactionId;
+	public double getAmount() {
+		return amount;
 	}
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

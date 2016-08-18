@@ -127,6 +127,24 @@ public class MainController {
 		}
 	}
 	
+	public void aiButtonAction(ActionEvent event){
+		if(currentUser!=null && currentUser.isLogin()){
+			changeView("AccountDetails.fxml", content);
+		}
+	}
+	
+	public void ahiButtonAction(ActionEvent event){
+		if(currentUser!=null && currentUser.isLogin()){
+			changeView("History.fxml", content);
+		}
+	}
+	
+	public void contactBankButtonAction(ActionEvent event){
+		if(currentUser!=null && currentUser.isLogin()){
+			changeView("SendMessage.fxml", content);
+		}
+	}
+	
 	public void transferMoneyButtonAction(ActionEvent event){
 		if(currentUser!=null && currentUser.isLogin()){
 			changeView("MoneyTransfer.fxml", content);

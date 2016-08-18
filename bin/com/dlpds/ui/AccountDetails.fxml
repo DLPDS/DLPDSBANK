@@ -9,28 +9,15 @@
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlpds.ui.MainController">
 	<children>
-		<HBox>
-			<children>
-				<Label text="Your Account Number">
-               <HBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </HBox.margin></Label>
-            <Region HBox.hgrow="ALWAYS" />
-				<TextField fx:id="transAccNum">
-               <HBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </HBox.margin></TextField>
-			</children>
-		</HBox>
       <HBox layoutX="10.0" layoutY="10.0">
          <children>
-            <Label text="Receiver's Account Numbe">
+            <Label text="Account Number">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
-            <TextField fx:id="receAccNum">
+            <TextField editable="false">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin>
@@ -39,20 +26,20 @@
       </HBox>
       <HBox layoutX="10.0" layoutY="10.0">
          <children>
-            <Label text="Amount">
+            <Label text="Balance">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
-            <TextField fx:id="transAmount">
+            <TextField editable="false">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin>
             </TextField>
          </children>
       </HBox>
-      <Button fx:id="transfer" mnemonicParsing="false" text="Transfer">
+      <Button fx:id="transfer" mnemonicParsing="false" text="Ok">
          <VBox.margin>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </VBox.margin>

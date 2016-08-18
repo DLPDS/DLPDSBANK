@@ -7,55 +7,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.*?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlpds.ui.MainController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlpds.ui.MainController">
 	<children>
 		<HBox>
 			<children>
-				<Label text="your Account Number">
+				<Label text="Message">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin></Label>
             <Region HBox.hgrow="ALWAYS" />
-				<TextField>
+            <TextArea prefHeight="200.0" prefWidth="200.0">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </HBox.margin></TextField>
+               </HBox.margin>
+            </TextArea>
 			</children>
 		</HBox>
       <HBox layoutX="10.0" layoutY="10.0">
          <children>
-            <Label text="Receiver's Account Numbe">
-               <HBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </HBox.margin>
-            </Label>
             <Region HBox.hgrow="ALWAYS" />
-            <TextField>
+            <Button mnemonicParsing="false" text="Send">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin>
-            </TextField>
+            </Button>
          </children>
       </HBox>
-      <HBox layoutX="10.0" layoutY="10.0">
-         <children>
-            <Label text="Amount">
-               <HBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </HBox.margin>
-            </Label>
-            <Region HBox.hgrow="ALWAYS" />
-            <TextField>
-               <HBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </HBox.margin>
-            </TextField>
-         </children>
-      </HBox>
-      <Button mnemonicParsing="false" text="Transfer">
-         <VBox.margin>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-         </VBox.margin>
-      </Button>
 	</children>
 </VBox>
