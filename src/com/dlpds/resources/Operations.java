@@ -39,7 +39,7 @@ public class Operations {
 		}
 	}
 
-	public boolean validLogin(String uname, String pwd) {
+	public User validLogin(String uname, String pwd) {
 		try {
 			System.out.println(uname);
 			String query = "SELECT password FROM signin_details where Customer_username='" + uname + "'";
@@ -53,68 +53,106 @@ public class Operations {
 				dbpwd = myRs.getString("password");
 			}
 			if (pwd.equals(dbpwd)) {
-				initializeApp(dbpwd);
-				return true;
+				User usr = initializeApp(dbpwd);
+				return usr;
 			} else {
-				return false;
+				return null;
 			}
 		} catch (Exception e) {
-			return false;
+			return null;
 
 		}
 	}
 
-	private void initializeApp(String pwd) {
-		// TODO Auto-generated method stub
+	private User initializeApp(String pwd) {
+		try {
+			User usr = getUser();
+			usr = setAccounts(usr);
+			if (usr != null) {
+				usr.setRegister(true);
+				usr.setLogin(true);
+				return usr;
+			}
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	public User getUser() {
 		try {
 			String query = "SELECT first_name,last_name,nid,sex,birthday,address,phone_no,email,username FROM internet_bank.customer";
 			Statement myStam = getStatement();
 			ResultSet myRs = executeQuery(myStam, query);
-			String firstName=null;
-			String secondName=null;
-			String nid=null;
-			String gender=null;
-			String dob=null;
-			String address=null;
-			String phoneNumber=null;
-			String email=null;
-			String uname=null;
-			
-			String accNumber=null;
-			double balance=0.0;
-			int currencyid=0;
-			
-			while (myRs.next()) {	
-				firstName=myRs.getString("first_name");
-				secondName=myRs.getString("last_name");
-				nid=myRs.getString("nid");
-				gender=myRs.getString("sex");
-				dob=myRs.getString("birthday");
-				address=myRs.getString("address");
-				phoneNumber=myRs.getString("phone_no");
-				email=myRs.getString("email");
-				uname=myRs.getString("username");
+			String firstName = null;
+			String secondName = null;
+			String nid = null;
+			String gender = null;
+			String dob = null;
+			String address = null;
+			String phoneNumber = null;
+			String email = null;
+			String uname = null;
+
+			while (myRs.next()) {
+				firstName = myRs.getString("first_name");
+				secondName = myRs.getString("last_name");
+				nid = myRs.getString("nid");
+				gender = myRs.getString("sex");
+				dob = myRs.getString("birthday");
+				address = myRs.getString("address");
+				phoneNumber = myRs.getString("phone_no");
+				email = myRs.getString("email");
+				uname = myRs.getString("username");
 			}
-			User usr=new User(firstName,secondName,nid,gender,dob,address,phoneNumber,email,uname);
-			usr.setLogin(true);
-			System.out.println(usr.isLogin()+" New user logged");
-			
-			String query1 = "SELECT account_num,balance,Currency_id FROM internet_bank.account where Customer_username='"+uname+"'";
+			User usr = new User(firstName, secondName, nid, gender, dob, address, phoneNumber, email, uname);
+			return usr;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	public User setAccounts(User usr) {
+		try {
+
+			String accNumber = null;
+			double balance = 0.0;
+			int currencyid = 0;
+
+			String currency = null;
+
+			String query1 = "SELECT account_num,balance,Currency_id FROM internet_bank.account where Customer_username='"
+					+ usr.getUname() + "'";
 			Statement myStam1 = getStatement();
 			ResultSet myRs1 = executeQuery(myStam1, query1);
-			while (myRs1.next()) {	
-				accNumber=myRs1.getString("account_num");
-				balance=Double.parseDouble(myRs1.getString("balance"));
-				currencyid=Integer.parseInt(myRs1.getString("Currency_id"));
+			while (myRs1.next()) {
+				accNumber = myRs1.getString("account_num");
+				balance = Double.parseDouble(myRs1.getString("balance"));
+				currencyid = Integer.parseInt(myRs1.getString("Currency_id"));
 			}
-			System.out.println(accNumber);
-			System.out.println(balance);
-			System.out.println(currencyid);
+
+			String query2 = "SELECT name FROM internet_bank.currency where id='" + currencyid + "'";
+			Statement myStam2 = getStatement();
+			ResultSet myRs2 = executeQuery(myStam2, query2);
+			while (myRs2.next()) {
+				currency = myRs2.getString("name");
+			}
+			Account acc = new Account(balance, currency, accNumber);
+			System.out.println(acc.getAccNumber());
+			System.out.println(acc.getBalance());
+			System.out.println(acc.getCurrency());
+			usr.getAccounts().add(acc);
+			return usr;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		
+
 	}
 
 	public boolean registerUser(User user, Account acc) {
@@ -129,9 +167,8 @@ public class Operations {
 			System.out.println("Paasword coming" + user.getGender());
 			System.out.println(result);
 			if (result != -1) {
-				if (addToSigninTable(user.getUname(), user.getPassword()) != -1
-						&& addToAccountTable(acc, user)) {
-					
+				if (addToSigninTable(user.getUname(), user.getPassword()) != -1 && addToAccountTable(acc, user)) {
+
 					return true;
 				} else {
 					return false;
@@ -161,10 +198,10 @@ public class Operations {
 			System.out.println("Paasword coming");
 			int currencyId = 0;
 			int bankId = 0;
-			while (myRs1.next() ) {
+			while (myRs1.next()) {
 				currencyId = myRs1.getInt("id");
 			}
-			
+
 			while (myRs2.next()) {
 				bankId = myRs2.getInt("id");
 			}

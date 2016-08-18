@@ -34,7 +34,9 @@ public class User {
 			this.setDob(dob);
 			this.setUname(uname);
 			this.setEmail(email);
-			this.setPhoneNumber(phoneNub);			
+			this.setPhoneNumber(phoneNub);	
+			accounts=new ArrayList<Account>();
+			setAccounts(accounts);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
