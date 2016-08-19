@@ -8,8 +8,10 @@ import com.dlpds.bank.Account;
 import com.dlpds.bank.Bank;
 import com.dlpds.bank.Transaction;
 import com.dlpds.bank.User;
+import com.dlpds.resources.Model;
 import com.dlpds.resources.Operations;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,8 +22,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -68,17 +73,38 @@ public class MainController {
 	private TextField balance;
 	@FXML
 	private Button confirm;
+	
 	@FXML
 	private VBox changingVBox;
 	@FXML
 	private VBox changingVBox2;
-	
+	@FXML
+	private VBox changingVBox3;
+	@FXML
+	private VBox changingVBox4;
+
 	@FXML
 	private TextArea textMessage;
 	@FXML
 	private Button sendButton;
 	@FXML
 	private DatePicker dob;
+	
+	@FXML
+	private Button displayButton;
+	@FXML
+	private TextField displayBalance;
+	@FXML
+    private TableView<Model> transactionTable;
+	@FXML
+	private TableColumn<Model, String> date;
+	@FXML
+	private TableColumn<Model, String> from;
+	@FXML
+	private TableColumn<Model, String> to;
+	@FXML
+	private TableColumn<Model, String> amount;
+	
 
 	public MainController() {
 		System.out.println("New object created");
@@ -159,7 +185,6 @@ public class MainController {
 
 		if (currentUser != null && currentUser.isLogin()) {
 			ArrayList<Account> accs = currentUser.getAccounts();
-			System.out.println(accs.size());
 			if (accs.size() == 1) {
 				accNum.setText(accs.get(0).getAccNumber());
 				balance.setText(String.valueOf(accs.get(0).getBalance()));
@@ -185,21 +210,37 @@ public class MainController {
 			changeView("History.fxml", content);
 		}
 	}
+	
+	public void displayButtonAction() {
+		if (displayButton.getText().equals("DISPLAY")) {
+			Operations opps=new Operations();
+			ObservableList<Model> modelData = opps.getTransactions(currentUser.getUname());
+			from.setCellValueFactory(cellData -> cellData.getValue().from());
+	        to.setCellValueFactory(cellData -> cellData.getValue().to());
+	        date.setCellValueFactory(cellData -> cellData.getValue().date());
+	        amount.setCellValueFactory(cellData -> cellData.getValue().amount());
+	        transactionTable.setItems(modelData);
+	        displayButton.setText("Cansel");
+		} else {
+			changingVBox4.getChildren().clear();
+		}
+
+	}
 
 	public void contactBankButtonAction(ActionEvent event) {
 		if (currentUser != null && currentUser.isLogin()) {
 			changeView("SendMessage.fxml", content);
 		}
 	}
-	
-	public void sendButtonAction(){
-		Operations opps=new Operations();
-		int result=opps.insertMeassage(currentUser.getUname(), textMessage.getText(),dob.getValue().toString());
-		if(result!=-1){
+
+	public void sendButtonAction() {
+		Operations opps = new Operations();
+		int result = opps.insertMeassage(currentUser.getUname(), textMessage.getText(), dob.getValue().toString());
+		if (result != -1) {
 			displaySuccessAleart("Success", "Message Send Successfully");
 			changingVBox.getChildren().clear();
 
-		}else{
+		} else {
 			displayAleart("Error", "Internal Error");
 			changingVBox.getChildren().clear();
 		}
@@ -214,20 +255,18 @@ public class MainController {
 	public void transferButtonAction(ActionEvent event) {
 		if (currentUser.isLogin()) {
 			Date currentDatetime = new Date(System.currentTimeMillis());
-	        java.sql.Date sqlDate = new java.sql.Date(currentDatetime.getTime());
-			System.out.println("Please enter Amount of transfer " + transAccNum.getText());
-			System.out.println(sqlDate);
-			Transaction trans=new Transaction(transAccNum.getText(),receAccNum.getText(),sqlDate,Double.parseDouble(transAmount.getText()));
-			Operations opps=new Operations();
-			User newUsr=opps.doTransaction(trans, currentUser);
-			if(newUsr!=null){
-				currentUser=newUsr;
+			java.sql.Date sqlDate = new java.sql.Date(currentDatetime.getTime());
+			Transaction trans = new Transaction(transAccNum.getText(), receAccNum.getText(), sqlDate,
+					Double.parseDouble(transAmount.getText()));
+			Operations opps = new Operations();
+			User newUsr = opps.doTransaction(trans, currentUser);
+			if (newUsr != null) {
+				currentUser = newUsr;
 				displaySuccessAleart("Success", "Your Transaction is success");
-			}else{
+				changingVBox3.getChildren().clear();
+			} else {
 				displayAleart("Warning", "Trnasaction Unsuccessfull");
 			}
-			//Bank bank = Bank.getInstance();
-			//bank.transfer(transAccNum.getText(), receAccNum.getText(), Double.parseDouble(transAmount.getText()));
 		} else {
 			System.out.println("Please Login");
 		}

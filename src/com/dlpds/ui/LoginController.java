@@ -40,14 +40,11 @@ public class LoginController {
 	}
 	
 	public void changeWindow(String fxmlFile,Button button,String title) {
-		// Decalaration of Variables
 	    final Stage stage, stage1;
 	    FXMLLoader pane;
 	    Parent taskselectwindow;
 
-	 // get a handle to the stage
 	    stage = (Stage) button.getScene().getWindow();
-	    // do what you have to do
 	    stage.close();
 	    pane = new FXMLLoader(getClass().getResource(fxmlFile));
 	    try {

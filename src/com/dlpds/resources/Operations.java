@@ -1,5 +1,6 @@
 package com.dlpds.resources;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,7 +10,12 @@ import com.dlpds.bank.Account;
 import com.dlpds.bank.Transaction;
 import com.dlpds.bank.User;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Operations {
+	
+	private ObservableList<Model> personData = FXCollections.observableArrayList();
 
 	public Statement getStatement() {
 		try {
@@ -55,7 +61,7 @@ public class Operations {
 				dbpwd = myRs.getString("password");
 			}
 			if (pwd.equals(dbpwd)) {
-				User usr = initializeApp(dbpwd);
+				User usr = initializeApp(uname);
 				return usr;
 			} else {
 				return null;
@@ -66,9 +72,9 @@ public class Operations {
 		}
 	}
 
-	private User initializeApp(String pwd) {
+	private User initializeApp(String uname) {
 		try {
-			User usr = getUser();
+			User usr = getUser(uname);
 			usr = setAccounts(usr);
 			if (usr != null) {
 				usr.setRegister(true);
@@ -83,9 +89,9 @@ public class Operations {
 
 	}
 
-	public User getUser() {
+	public User getUser(String uname) {
 		try {
-			String query = "SELECT first_name,last_name,nid,sex,birthday,address,phone_no,email,username FROM internet_bank.customer";
+			String query = "SELECT first_name,last_name,nid,sex,birthday,address,phone_no,email,username FROM internet_bank.customer where username='"+uname+ "'";
 			Statement myStam = getStatement();
 			ResultSet myRs = executeQuery(myStam, query);
 			String firstName = null;
@@ -96,7 +102,7 @@ public class Operations {
 			String address = null;
 			String phoneNumber = null;
 			String email = null;
-			String uname = null;
+			
 
 			while (myRs.next()) {
 				firstName = myRs.getString("first_name");
@@ -107,7 +113,7 @@ public class Operations {
 				address = myRs.getString("address");
 				phoneNumber = myRs.getString("phone_no");
 				email = myRs.getString("email");
-				uname = myRs.getString("username");
+				
 			}
 			User usr = new User(firstName, secondName, nid, gender, dob, address, phoneNumber, email, uname);
 			return usr;
@@ -197,7 +203,6 @@ public class Operations {
 			String query2 = "SELECT id FROM internet_bank.bank where name='Bank of DLPDS'";
 			ResultSet myRs1 = executeQuery(myStam1, query1);
 			ResultSet myRs2 = executeQuery(myStam2, query2);
-			System.out.println("Paasword coming");
 			int currencyId = 0;
 			int bankId = 0;
 			while (myRs1.next()) {
@@ -265,7 +270,9 @@ public class Operations {
 			Account usrAcc=null;
 			int i=0;
 			while(!acc.isEmpty()){
-				;
+				System.out.println(acc.get(i).getAccNumber());
+				System.out.println(trans.getFromAcc());
+				
 				if(acc.get(i).getAccNumber().equals(trans.getFromAcc())){
 					accVal1=acc.get(i).getBalance();
 					usrAcc=acc.get(i);
@@ -340,7 +347,6 @@ public class Operations {
 		}
 
 	}
-	//;
 	
 	public int updateAccounts(String accNum,double newBalance){
 		try {
@@ -351,6 +357,45 @@ public class Operations {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
+
+		}
+		
+	}
+	
+	public ObservableList<Model> getTransactions(String uname){
+		try {
+
+			String balance = null;
+			String accNum1=null;
+			String accNum2=null;
+			String date=null;
+			
+			String query = "SELECT Account_account_num,to_account_number,date,amount FROM internet_bank.trnasaction where Account_Customer_username='"+uname+"';";
+			Statement myStam1 = getStatement();
+			ResultSet myRs1 = executeQuery(myStam1, query);
+			personData.removeAll();
+			
+			while (myRs1.next()) {
+				
+				accNum1=myRs1.getString("Account_account_num");
+				System.out.println(accNum1);
+				accNum2=myRs1.getString("to_account_number");
+				System.out.println(accNum2);
+				date=String.valueOf(myRs1.getString("date"));
+				System.out.println(date);
+				balance =String.valueOf( myRs1.getString("amount"));
+				
+				Model model=new Model(accNum1,accNum2,date,balance);
+				personData.add(model);
+			}
+			
+			return personData;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+			
 
 		}
 		
