@@ -3,8 +3,10 @@ package com.dlpds.resources;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.dlpds.bank.Account;
+import com.dlpds.bank.Transaction;
 import com.dlpds.bank.User;
 
 public class Operations {
@@ -241,11 +243,12 @@ public class Operations {
 
 		}
 	}
-	
-	public int insertMeassage(String uname, String message,String date) {
+
+	public int insertMeassage(String uname, String message, String date) {
 		try {
 			Statement myStam = getStatement();
-			String query = "INSERT INTO `internet_bank`.`message` (`message`, `date`, `Customer_username`) VALUES ('"+message+"', '"+date+"', '"+uname+"');";
+			String query = "INSERT INTO `internet_bank`.`message` (`message`, `date`, `Customer_username`) VALUES ('"
+					+ message + "', '" + date + "', '" + uname + "')";
 			int result = dataManipulateQuery(myStam, query);
 			return result;
 		} catch (Exception e) {
@@ -254,8 +257,104 @@ public class Operations {
 
 		}
 	}
+
+	public User doTransaction(Transaction trans, User usr) {
+		try {
+			double accVal1=0.0;
+			ArrayList<Account> acc= usr.getAccounts();
+			Account usrAcc=null;
+			int i=0;
+			while(!acc.isEmpty()){
+				;
+				if(acc.get(i).getAccNumber().equals(trans.getFromAcc())){
+					accVal1=acc.get(i).getBalance();
+					usrAcc=acc.get(i);
+					acc.remove(i);
+					break;
+				}
+				i++;
+			}
+			double accVal2=getAccountBalance(trans.getToAcc());
+			
+			if(accVal1<trans.getAmount()){
+				System.out.println("dont have enogh money");
+			}else if(accVal1>trans.getAmount()){
+				accVal1-=trans.getAmount();
+				accVal2+=trans.getAmount();
+				usrAcc.setBalance(accVal1);
+				acc.add(usrAcc);
+				usr.setAccounts(acc);
+				updateAccounts(trans.getFromAcc(), accVal1);
+				updateAccounts(trans.getToAcc(), accVal2);
+			}
+			
+			String query3="SELECT Customer_Bank_id1 FROM internet_bank.account where account_num='"+trans.getFromAcc()+"'";
+			Statement myStam3 = getStatement();
+			ResultSet myRs = executeQuery(myStam3, query3);
+			
+			int bankId = 0;
+
+			while (myRs.next()) {
+				bankId = myRs.getInt("Customer_Bank_id1");
+			}
+			
+			String query2 = "INSERT INTO `internet_bank`.`trnasaction` (`amount`, `date`, `to_account_number`, `Account_account_num`, `Account_Customer_username`, `Account_Customer_Bank_id`) VALUES ('"
+					+ trans.getAmount() + "', '" + trans.getDateTime() + "', '" + trans.getToAcc() + "', '"
+					+ trans.getFromAcc() + "', '" + usr.getUname() + "', '"+String.valueOf(bankId)+"')";
+			Statement myStam2 = getStatement();
+			int result = dataManipulateQuery(myStam2, query2);
+			
+			if(result !=-1){
+				return usr;
+			}else{
+				return null;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		}
+
+	}
+
+	public double getAccountBalance(String accNum) {
+		try {
+
+			double balance = 0.0;
+
+
+			String query1 = "SELECT balance FROM internet_bank.account where account_num='" + accNum + "'";
+			Statement myStam1 = getStatement();
+			ResultSet myRs1 = executeQuery(myStam1, query1);
+			while (myRs1.next()) {
+				balance = Double.parseDouble(myRs1.getString("balance"));
+			}
+			return balance;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0.0;
+
+		}
+
+	}
+	//;
 	
-	
+	public int updateAccounts(String accNum,double newBalance){
+		try {
+			Statement myStam = getStatement();
+			String query = "UPDATE `internet_bank`.`account` SET `balance`='"+String.valueOf(newBalance)+"' WHERE `account_num`='"+accNum+"'";
+			int result = dataManipulateQuery(myStam, query);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+
+		}
+		
+	}
 
 
 }

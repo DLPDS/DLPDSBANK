@@ -1,10 +1,12 @@
 package com.dlpds.ui;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import com.dlpds.bank.Account;
 import com.dlpds.bank.Bank;
+import com.dlpds.bank.Transaction;
 import com.dlpds.bank.User;
 import com.dlpds.resources.Operations;
 
@@ -211,10 +213,21 @@ public class MainController {
 
 	public void transferButtonAction(ActionEvent event) {
 		if (currentUser.isLogin()) {
-			// Transaction trans=new Transaction();
+			Date currentDatetime = new Date(System.currentTimeMillis());
+	        java.sql.Date sqlDate = new java.sql.Date(currentDatetime.getTime());
 			System.out.println("Please enter Amount of transfer " + transAccNum.getText());
-			Bank bank = Bank.getInstance();
-			bank.transfer(transAccNum.getText(), receAccNum.getText(), Double.parseDouble(transAmount.getText()));
+			System.out.println(sqlDate);
+			Transaction trans=new Transaction(transAccNum.getText(),receAccNum.getText(),sqlDate,Double.parseDouble(transAmount.getText()));
+			Operations opps=new Operations();
+			User newUsr=opps.doTransaction(trans, currentUser);
+			if(newUsr!=null){
+				currentUser=newUsr;
+				displaySuccessAleart("Success", "Your Transaction is success");
+			}else{
+				displayAleart("Warning", "Trnasaction Unsuccessfull");
+			}
+			//Bank bank = Bank.getInstance();
+			//bank.transfer(transAccNum.getText(), receAccNum.getText(), Double.parseDouble(transAmount.getText()));
 		} else {
 			System.out.println("Please Login");
 		}
