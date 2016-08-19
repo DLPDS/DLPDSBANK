@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.dlpds.bank.Bank;
 import com.dlpds.bank.User;
+import com.dlpds.resources.Operations;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,6 +55,15 @@ public class MainController {
 	private Button transfer;
 	@FXML
 	private ChoiceBox currency;
+	
+	@FXML
+	private TextField accNum;
+	@FXML
+	private TextField balance;
+	@FXML
+	private Button confirm;
+	@FXML
+	private VBox changingVBox;
 	
 	
 	public MainController(){
@@ -117,8 +127,6 @@ public class MainController {
 		if(currentUser==null){
 			System.out.println("Current User is null");
 		}
-		
-		
 	}
 	
 	public void updateButtonAction(ActionEvent event){
@@ -130,7 +138,35 @@ public class MainController {
 	public void aiButtonAction(ActionEvent event){
 		if(currentUser!=null && currentUser.isLogin()){
 			changeView("AccountDetails.fxml", content);
+			
 		}
+	}
+	
+	public void doChanges(){
+		
+		if(currentUser!=null && currentUser.isLogin()){
+			Operations opp=new Operations();
+			String[] details=opp.getAccDetails(currentUser.getUname());
+			if(details!=null){
+				accNum.setText(details[0]);
+				balance.setText(details[1]);
+				confirm.setText("Ok");
+			}else{
+				displayAleart("Warning", "Database Error");
+			}
+			
+		}else{
+			displayAleart("Warning", "Internal Error");
+		}
+	}
+	
+	public void confirmButtonAction(){
+		if(confirm.getText().equals("DISPLAY")){
+			doChanges();
+		}else{
+			changingVBox.getChildren().clear();
+		}
+		
 	}
 	
 	public void ahiButtonAction(ActionEvent event){
@@ -154,9 +190,7 @@ public class MainController {
 	public void transferButtonAction(ActionEvent event){
 		if(currentUser.isLogin()){
     		//Transaction trans=new Transaction();
-    		
-        	
-        	System.out.println("Please enter Amount of transfer");
+        	System.out.println("Please enter Amount of transfer "+transAccNum.getText());
     		Bank bank=Bank.getInstance();
     		bank.transfer(transAccNum.getText(),receAccNum.getText() , Double.parseDouble(transAmount.getText()));
     	}else{
@@ -164,7 +198,7 @@ public class MainController {
     	}
 	}
 	
-	private void displayAleart(String headerText,String content){
+	public void displayAleart(String headerText,String content){
 		Alert alert = new Alert(AlertType.WARNING);
         //alert.initOwner(mainApp.getPrimaryStage());
         alert.setTitle("Warning");
@@ -174,7 +208,7 @@ public class MainController {
         alert.showAndWait();
 	}
 	
-	private void displaySuccessAleart(String headerText,String content){
+	public void displaySuccessAleart(String headerText,String content){
 		Alert alert = new Alert(AlertType.INFORMATION);
         //alert.initOwner(mainApp.getPrimaryStage());
         alert.setTitle("Success");

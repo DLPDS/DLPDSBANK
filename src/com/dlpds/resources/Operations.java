@@ -242,4 +242,28 @@ public class Operations {
 		}
 	}
 
+	public String[] getAccDetails(String username) {
+
+		try {
+			String[] details = new String[2];
+			String query = "SELECT account_num,balance FROM internet_bank.account where Customer_username='" + username
+					+ "';";
+			Statement myStam = getStatement();
+			ResultSet myRs = executeQuery(myStam, query);
+			details[0] = null;
+			details[1] = null;
+			while (myRs.next()) {
+				details[0] = myRs.getString("account_num");
+				details[1] = myRs.getString("balance");
+				
+			}
+			return details;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
 }
