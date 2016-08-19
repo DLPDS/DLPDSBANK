@@ -17,6 +17,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -66,6 +68,15 @@ public class MainController {
 	private Button confirm;
 	@FXML
 	private VBox changingVBox;
+	@FXML
+	private VBox changingVBox2;
+	
+	@FXML
+	private TextArea textMessage;
+	@FXML
+	private Button sendButton;
+	@FXML
+	private DatePicker dob;
 
 	public MainController() {
 		System.out.println("New object created");
@@ -178,6 +189,19 @@ public class MainController {
 			changeView("SendMessage.fxml", content);
 		}
 	}
+	
+	public void sendButtonAction(){
+		Operations opps=new Operations();
+		int result=opps.insertMeassage(currentUser.getUname(), textMessage.getText(),dob.getValue().toString());
+		if(result!=-1){
+			displaySuccessAleart("Success", "Message Send Successfully");
+			changingVBox.getChildren().clear();
+
+		}else{
+			displayAleart("Error", "Internal Error");
+			changingVBox.getChildren().clear();
+		}
+	}
 
 	public void transferMoneyButtonAction(ActionEvent event) {
 		if (currentUser != null && currentUser.isLogin()) {
@@ -198,21 +222,17 @@ public class MainController {
 
 	public void displayAleart(String headerText, String content) {
 		Alert alert = new Alert(AlertType.WARNING);
-		// alert.initOwner(mainApp.getPrimaryStage());
 		alert.setTitle("Warning");
 		alert.setHeaderText(headerText);
 		alert.setContentText(content);
-
 		alert.showAndWait();
 	}
 
 	public void displaySuccessAleart(String headerText, String content) {
 		Alert alert = new Alert(AlertType.INFORMATION);
-		// alert.initOwner(mainApp.getPrimaryStage());
 		alert.setTitle("Success");
 		alert.setHeaderText(headerText);
 		alert.setContentText(content);
-
 		alert.showAndWait();
 	}
 

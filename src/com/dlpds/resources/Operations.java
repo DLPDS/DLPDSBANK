@@ -241,6 +241,21 @@ public class Operations {
 
 		}
 	}
+	
+	public int insertMeassage(String uname, String message,String date) {
+		try {
+			Statement myStam = getStatement();
+			String query = "INSERT INTO `internet_bank`.`message` (`message`, `date`, `Customer_username`) VALUES ('"+message+"', '"+date+"', '"+uname+"');";
+			int result = dataManipulateQuery(myStam, query);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+
+		}
+	}
+	
+	
 
 
 }
