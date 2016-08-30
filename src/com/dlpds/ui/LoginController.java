@@ -31,7 +31,6 @@ public class LoginController {
 	
 	
 	public LoginController(){
-		System.out.println("New login object created");
 	}
 	
 	@FXML
@@ -57,11 +56,9 @@ public class LoginController {
 		    if(fxmlFile.equals("Register.fxml")){
 		    	RegisterController controller = pane.<RegisterController>getController();
 		    	controller.initialization(currentUser);
-				System.out.println("View changed to register");
 		    }else if(fxmlFile.equals("MainUI.fxml")){
 		    	MainController controller = pane.<MainController>getController();
-		    	controller.initialization(currentUser);
-				System.out.println("View changed to main");		    	
+		    	controller.initialization(currentUser);	    	
 		    }
 		    
 			
@@ -74,9 +71,6 @@ public class LoginController {
 	@FXML
 	public void loginButtonAction(ActionEvent event){
 		Operations loginOpp=new Operations();
-		System.out.println(uname.getText());
-		System.out.println(pwd.getText());
-		System.out.println(loginOpp.validLogin(uname.getText(), pwd.getText()));
 		currentUser=loginOpp.validLogin(uname.getText().trim(), pwd.getText().trim());
 		if(currentUser!=null){
 			changeWindow("MainUI.fxml",login,"Bank of DLPDS");
@@ -87,7 +81,6 @@ public class LoginController {
 	
 	@FXML
 	public void registerButtonAction(ActionEvent event){
-		System.out.println("Enter Options Login Register");
 		changeWindow("Register.fxml",register,"Registration");
 	}
 	

@@ -55,9 +55,6 @@ public class User {
 			else{
 				return false;
 			}
-			
-			/*this.setRegister(true);
-			return true;*/
 		}catch(Exception e){
 			return false;
 		}
@@ -188,6 +185,22 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public boolean updateUser(String firstName,String secondName,String nicNo,String mail,String userName,String pwd,String oldUname){
+		this.setName(firstName);
+		this.setSecondName(secondName);
+		this.setNIC(nicNo);
+		this.setEmail(mail);
+		this.setUname(userName);
+		this.setPassword(pwd);
+		Operations opps=new Operations();
+		if(opps.updateDb(firstName, secondName, nicNo, mail, userName, pwd, oldUname)!=-1){
+			return true;
+		}else{
+			return false;
+		}
+		
 	}
 
 }

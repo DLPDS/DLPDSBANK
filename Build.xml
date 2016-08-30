@@ -1,39 +1,93 @@
-<project name="BankOfDLPDS" basedir="." default="main">
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<project name="Ensemble8 JavaFX Demo Application" default="default" basedir="."
+  xmlns:fx="javafx:com.sun.javafx.tools.ant">
+ 
+  <property name="JAVA_HOME" value="C:\Program Files\Java\jdk1.8.0_101"/>
+ 
+  <path id="CLASSPATH">
+    <pathelement location="lib/mysql-connector-java-5.1.39-bin.jar"/>
+    <pathelement path="classes"/>
+  </path>
+  
+  <property name="build.src.dir" value="src"/>
+  <property name="build.classes.dir" value="classes"/>
+  <property name="build.dist.dir" value="dist"/>
+ 
+  <target name="default" depends="clean,compile">
+ 
+    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+      uri="javafx:com.sun.javafx.tools.ant"
+      classpath="${JAVA_HOME}/lib/ant-javafx.jar"/>
+ 
+  	 <fx:application id="ensemble8"
+  	    name="Ensemble8"
+  	    mainClass="ui/Main"/>
 
-    <property name="src.dir"     value="src"/>
+  	  <fx:resources id="appRes">
+  	    <fx:fileset dir="${build.dist.dir}" includes="ensemble8.jar"/>
+  	    <fx:fileset dir="lib"/>
+  	    <fx:fileset dir="${build.classes.dir}"/>
+  	  </fx:resources>
 
-    <property name="build.dir"   value="build"/>
-    <property name="classes.dir" value="${build.dir}/classes"/>
-    <property name="jar.dir"     value="${build.dir}/jar"/>
-
-    <property name="main-class"  value="com.dlpds.ui.Main"/>
-
-
-
-    <target name="clean">
-        <delete dir="${build.dir}"/>
-    </target>
-
-    <target name="compile">
-        <mkdir dir="${classes.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${classes.dir}"/>
-    </target>
-
-    <target name="jar" depends="compile">
-        <mkdir dir="${jar.dir}"/>
-        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
-            <manifest>
-                <attribute name="Main-Class" value="${main-class}"/>
-            </manifest>
-        </jar>
-    </target>
-
-    <target name="run" depends="jar">
-        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
-    </target>
-
-    <target name="clean-build" depends="clean,jar"/>
-
-    <target name="main" depends="clean,run"/>
-
+  	  <fx:jar destfile="${build.dist.dir}/ensemblenew8.jar">
+  	    <fx:application refid="ensemble8"/>
+  	    <fx:resources refid="appRes"/>
+  	    <fx:fileset dir="${build.classes.dir}"/>
+  	 <!-- Customize jar manifest (optional) -->
+  	<manifest>
+  	    <attribute name="Implementation-Vendor" value="Samples Team"/>
+  	    <attribute name="Implementation-Version" value="1.0"/>
+  	<attribute name="Main-Class" value="ui/Main" />
+  	</manifest>
+  	</fx:jar>
+  	
+      <fx:deploy outdir="." embedJNLP="true"
+        outfile="ensemble8new"
+        nativeBundles="all">
+ 
+        <fx:application refId="ensemble8"/>
+ 
+        <fx:resources refid="appRes"/>
+ 
+        <fx:info title="Ensemble8 JavaFX Demo Application"
+          vendor="Oracle Corporation"/>
+ 
+      </fx:deploy>
+ 
+  </target>
+ 
+  <target name="clean">
+    <mkdir dir="${build.classes.dir}"/>
+    <mkdir dir="${build.dist.dir}"/>
+ 
+    <delete>
+      <fileset dir="${build.classes.dir}" includes="**/*"/>
+      <fileset dir="${build.dist.dir}" includes="**/*"/>
+    </delete>
+ 
+  </target>
+ 
+  <target name="compile" depends="clean">
+ 
+    <javac includeantruntime="false"
+      srcdir="${build.src.dir}"
+      destdir="${build.classes.dir}"
+      fork="yes"
+      executable="${JAVA_HOME}/bin/javac"
+      source="1.8"
+      debug="on"
+      classpathref="CLASSPATH">
+    </javac>
+    
+    <!-- Copy resources to build.classes.dir -->
+    
+      <copy todir="${build.classes.dir}">
+        <fileset dir="lib"/>
+        <fileset dir="lib"/>
+        <fileset dir="lib"/>
+      </copy>
+    
+  </target>
+ 
 </project>

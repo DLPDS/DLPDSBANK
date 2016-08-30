@@ -7,10 +7,7 @@ public class Bank {
 	private ArrayList<User> users;
 	
 	private static Bank bank = new Bank( );
-	   
-	   /* A private Constructor prevents any other 
-	    * class from instantiating.
-	    */
+
 	private Bank(){
 		accounts = new ArrayList<Account>();
 	    users = new ArrayList<User>();
@@ -20,11 +17,7 @@ public class Bank {
 	public static Bank getInstance( ) {
 		return bank;
 	}
-	
-	/*public Bank() {
-		accounts = new ArrayList<Account>();
-		users = new ArrayList<User>();
-	}*/					
+					
 	public void addAccount(Account account) {
 		accounts.add(account);
 	}

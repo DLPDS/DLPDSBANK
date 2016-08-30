@@ -9,7 +9,7 @@
 
 <Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlpds.ui.MainController">
    <children>
-      <VBox>
+      <VBox fx:id="changingVBox5">
          <children>
             <HBox>
                <children>
@@ -19,7 +19,7 @@
                      </HBox.margin>
                   </Label>
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField>
+                  <TextField fx:id="firstName">
                      <padding>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
@@ -40,7 +40,7 @@
                      </HBox.margin>
                   </Label>
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField>
+                  <TextField fx:id="secondName">
                      <padding>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
@@ -58,7 +58,7 @@
                      </HBox.margin>
                   </Label>
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField>
+                  <TextField fx:id="nic">
                      <padding>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
@@ -76,7 +76,7 @@
                      </HBox.margin>
                   </Label>
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField>
+                  <TextField fx:id="mail">
                      <padding>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
@@ -94,7 +94,7 @@
                      </HBox.margin>
                   </Label>
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField>
+                  <TextField fx:id="userName">
                      <padding>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
@@ -112,7 +112,7 @@
                      </HBox.margin>
                   </Label>
                   <Region HBox.hgrow="ALWAYS" />
-                  <PasswordField>
+                  <PasswordField fx:id="pwd">
                      <padding>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
@@ -130,7 +130,7 @@
                      </HBox.margin>
                   </Label>
                   <Region HBox.hgrow="ALWAYS" />
-                  <PasswordField>
+                  <PasswordField fx:id="pwd2">
                      <padding>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
@@ -140,7 +140,7 @@
                   </PasswordField>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" text="Update">
+            <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateUser" text="DISPLAY">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>

@@ -1,6 +1,7 @@
 package com.dlpds.resources;
 
-import java.sql.Date;
+
+import java.security.acl.LastOwnerException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,11 +50,9 @@ public class Operations {
 
 	public User validLogin(String uname, String pwd) {
 		try {
-			System.out.println(uname);
 			String query = "SELECT password FROM signin_details where Customer_username='" + uname + "'";
 			Statement myStam = getStatement();
 			ResultSet myRs = executeQuery(myStam, query);
-			System.out.println("Paasword coming");
 			String dbpwd = null;
 			while (myRs.next()) {
 				System.out.println("value");
@@ -150,9 +149,6 @@ public class Operations {
 				currency = myRs2.getString("name");
 			}
 			Account acc = new Account(balance, currency, accNumber);
-			System.out.println(acc.getAccNumber());
-			System.out.println(acc.getBalance());
-			System.out.println(acc.getCurrency());
 			usr.getAccounts().add(acc);
 			return usr;
 		} catch (SQLException e) {
@@ -395,10 +391,22 @@ public class Operations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
-			
 
 		}
 		
+	}
+	
+	public int updateDb(String firstName,String secondName,String nicNo,String mail,String userName,String pwd,String oldUname){
+		try {
+			Statement myStam = getStatement();
+			String query = "UPDATE `internet_bank`.`customer` SET `first_name`='"+firstName+"', `last_name`='"+secondName+"', `nid`='"+nicNo+"', `email`='"+mail+"' WHERE `username`='"+oldUname+"'";
+			int result = dataManipulateQuery(myStam, query);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+
+		}
 	}
 
 

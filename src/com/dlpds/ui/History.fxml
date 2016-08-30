@@ -19,16 +19,6 @@
       </TableView>
       <HBox>
          <children>
-            <Label text="Available Balance">
-               <HBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </HBox.margin>
-            </Label>
-            <TextField fx:id="displayBalance" editable="false">
-               <HBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </HBox.margin>
-            </TextField>
             <Region HBox.hgrow="ALWAYS" />
             <Button fx:id="displayButton" mnemonicParsing="false" onAction="#displayButtonAction" text="DISPLAY">
                <HBox.margin>

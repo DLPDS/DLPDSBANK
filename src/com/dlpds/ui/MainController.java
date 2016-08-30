@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import com.dlpds.bank.Account;
-import com.dlpds.bank.Bank;
 import com.dlpds.bank.Transaction;
 import com.dlpds.bank.User;
 import com.dlpds.resources.Model;
@@ -26,8 +25,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -82,6 +79,8 @@ public class MainController {
 	private VBox changingVBox3;
 	@FXML
 	private VBox changingVBox4;
+	@FXML
+	private VBox changingVBox5;
 
 	@FXML
 	private TextArea textMessage;
@@ -105,9 +104,25 @@ public class MainController {
 	@FXML
 	private TableColumn<Model, String> amount;
 	
+	@FXML
+	private TextField firstName;
+	@FXML
+	private TextField secondName;
+	@FXML
+	private TextField nic;
+	@FXML
+	private TextField mail;
+	@FXML
+	private TextField userName;
+	@FXML
+	private TextField pwd;
+	@FXML
+	private TextField pwd2;
+	@FXML
+	private Button updateButton;
+	
 
 	public MainController() {
-		System.out.println("New object created");
 	}
 
 	@FXML
@@ -122,7 +137,6 @@ public class MainController {
 			pane.getChildren().add(loader.load());
 			MainController controller = loader.<MainController>getController();
 			controller.initialization(currentUser);
-			System.out.println("View changed");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -149,7 +163,6 @@ public class MainController {
 			stage1.show();
 			LoginController controller = pane.<LoginController>getController();
 			controller.initialization(currentUser);
-			System.out.println("View changed to login");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -159,12 +172,9 @@ public class MainController {
 	public void logoutButtonAction(ActionEvent event) {
 		if (currentUser != null && currentUser.isLogin()) {
 			currentUser.logout();
-			System.out.println("User Logout ");
 			changeWindow("Login.fxml", logout, "Login");
-		}
-
-		if (currentUser == null) {
-			System.out.println("Current User is null");
+		}else {
+			displayAleart("Warning", "You are not logged in");
 		}
 	}
 
@@ -172,6 +182,45 @@ public class MainController {
 		if (currentUser != null && currentUser.isLogin()) {
 			changeView("UpdateInfo.fxml", content);
 		}
+	}
+	
+	public void updateUser(){
+		String currentUname = currentUser.getUname();
+		if (updateButton.getText().equals("DISPLAY")) {
+			showUserDetails();
+		} else if(updateButton.getText().equals("Update")){
+			//changingVBox5.getChildren().clear();
+			String fName=firstName.getText();
+			String sName = secondName.getText();
+			String nicNo = nic.getText();
+			String e_mail=mail.getText();
+			String uname=userName.getText();
+			String password = pwd.getText();
+			String password2 = pwd2.getText();
+			if((!password.equals("")|| !password2.equals("")) && password.equals(password2)){
+				System.out.println(currentUname);
+				if(currentUser.updateUser(fName,sName,nicNo,e_mail,uname,password,currentUname)){
+					displaySuccessAleart("Success", "Profile Details Updated");
+					changingVBox5.getChildren().clear();
+				}else{
+					displayAleart("Error", "Database Error");
+				}
+				
+			}else{
+				displayAleart("Error", "password mismatched");
+			}
+			
+		}
+	}
+	
+	public void showUserDetails(){
+		firstName.setText(currentUser.getName());
+		secondName.setText(currentUser.getSecondName());
+		nic.setText(currentUser.getNIC());
+		mail.setText(currentUser.getEmail());
+		userName.setText(currentUser.getUname());
+		updateButton.setText("Update");
+		
 	}
 
 	public void aiButtonAction(ActionEvent event) {
@@ -268,7 +317,7 @@ public class MainController {
 				displayAleart("Warning", "Trnasaction Unsuccessfull");
 			}
 		} else {
-			System.out.println("Please Login");
+			displayAleart("Warning", "Internal Error");
 		}
 	}
 
@@ -283,6 +332,14 @@ public class MainController {
 	public void displaySuccessAleart(String headerText, String content) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Success");
+		alert.setHeaderText(headerText);
+		alert.setContentText(content);
+		alert.showAndWait();
+	}
+	
+	public static void displayAleartStatic(String headerText, String content) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Warning");
 		alert.setHeaderText(headerText);
 		alert.setContentText(content);
 		alert.showAndWait();

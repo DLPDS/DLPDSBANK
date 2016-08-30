@@ -50,7 +50,6 @@ public class RegisterController {
 	private Button signUpButton;
 
 	public RegisterController() {
-		System.out.println("New Registration object created");
 	}
 
 	@FXML
@@ -76,7 +75,6 @@ public class RegisterController {
 			stage1.show();
 			LoginController controller = pane.<LoginController>getController();
 			controller.initialization(currentUser);
-			System.out.println("View changed to login");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
